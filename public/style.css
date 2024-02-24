@@ -1,27 +1,38 @@
 body {
     width: 100%;
     height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
     background-color: rgb(149, 216, 230);
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
+
+.sync-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #b997ff;
+    padding: .5rem 1rem;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
 #container {
     border: 2px solid rgb(240, 154, 248);
     background-color: rgb(252, 184, 225);
     box-shadow: 0px 10px 15px 10px rgba(0, 0,0 , 0.3);
     width: 80%;
-    height: 100%;
+    height: 80vh;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
-    align-content: center;
-    text-align: center ;
-    overflow-y: scroll;
-
-
+    align-content: flex-start;
+    overflow: scroll;
 }
+
 .addNoteDiv {
     border: 2px solid black;    
     background-color: rgb(245, 132, 200);   
@@ -31,22 +42,23 @@ body {
     width: 200px;
     height: 200px;
     display: flex;
+    align-items: center;
     justify-content: center;
-    text-align:center;
-    
 }
+
 .addNoteDiv:hover{
     transition: 0.25s;
     background-color: #c3b6b6;
 }
+
 #popupContainer {
     position: absolute;
     top: 50%;
     left: 50%;
+    transform: translate(-50%,-50%);
     width: 300px;
     height: 250px;
     border-radius: 10px;
-    transform: translate(-50%,-50%);
     padding: 10px;
     text-align: center;
     border: 2px solid black;
@@ -54,8 +66,14 @@ body {
     flex-direction: column;
     align-items: center;
 }
-textarea {
+#btn-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 5px;
+}
 
+textarea {
     width: 250px;
     height: 100px;
     margin: 5px;
@@ -63,8 +81,8 @@ textarea {
     box-sizing: border-box;
     border-radius: 4px;
     background-color: rgb(253, 253, 253);
-
 }
+
 .note {
     border: 2px solid rgb(189, 186, 3); 
     border-radius: 10px;
@@ -74,14 +92,20 @@ textarea {
     height: 200px;
     margin: 10px;
     display: flex;
+    flex-direction: column;
     align-items: left;
     justify-content: left;
     cursor: pointer;
     text-align:flex;
     overflow-y: scroll;
 }
-#editBtn, #deleteBtn,#submitBtn,#closeBtn 
-{
+.note>p {
+    flex-grow: 1;
+    padding: .5rem;
+    margin: 0;
+}
+
+#editBtn, #deleteBtn,#submitBtn,#closeBtn {
     background-color: #b997ff;
     color: #fff;
     border: none;

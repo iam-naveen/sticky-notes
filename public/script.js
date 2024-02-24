@@ -1,3 +1,21 @@
+
+function sync() {
+
+  const notes = JSON.parse(localStorage.getItem("notes")) || [];
+
+  fetch("/api/sync", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ notes }),
+  })
+  .then(async (res) => {
+    const data = await res.json();
+    console.log(data);
+  });
+}
+
 function display() {
   const popupContainer = document.createElement("div");
   popupContainer.innerHTML = `
@@ -12,12 +30,14 @@ function display() {
     `;
   document.body.appendChild(popupContainer);
 }
+
 function closePopup() {
   const popupContainer = document.getElementById("popupContainer");
   if (popupContainer) {
     popupContainer.remove();
   }
 }
+
 function createNote() {
   const popupContainer = document.getElementById("popupContainer");
   const noteText = document.getElementById("note-text").value;
@@ -33,12 +53,14 @@ function createNote() {
     add(note);
   }
 }
+
 function fill() {
   const existingNotes = JSON.parse(localStorage.getItem("notes")) || [];
   existingNotes.forEach((note) => {
     add(note);
   });
 }
+
 function add(note) {
   const div = document.createElement("div");
   div.classList.add("note");
@@ -52,16 +74,17 @@ function add(note) {
   div.id = note.id;
   document.querySelector("#container").append(div);
 }
+
 function deleteNote(id) {
   const array = JSON.parse(localStorage.getItem("notes")) || [];
   const newArray = array.filter((note) => note.id != id);
   localStorage.setItem("notes", JSON.stringify(newArray));
   document.getElementById(id).remove();
 }
+
 function displayEdit(id) {
   const popupContainer = document.createElement("div");
   const text = document.getElementById(id).querySelector("p").textContent;
-  console.log(text);
 
   popupContainer.innerHTML = `
     <div id ="popupContainer">
@@ -75,6 +98,7 @@ function displayEdit(id) {
     `;
   document.body.appendChild(popupContainer);
 }
+
 function saveNote(id) {
   const array = JSON.parse(localStorage.getItem("notes"));
   const newNote = document.getElementById("note-text").value;
