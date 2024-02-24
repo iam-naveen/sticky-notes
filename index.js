@@ -25,9 +25,9 @@ const sql = postgres({
 
 // const __dirname = path.resolve();
 //
-// app.get("/", (_req, res) => {
-//      res.sendFile(__dirname + '/public/index.html');
-// })
+app.get("/", (_req, res) => {
+     res.sendFile('/public/index.html');
+})
 
 app.post('/api/sync', async (req, res) => {
 
