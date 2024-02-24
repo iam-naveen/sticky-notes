@@ -6,6 +6,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(express.static('public'));
 
 const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
@@ -20,10 +21,6 @@ const sql = postgres({
           options: `project=${ENDPOINT_ID}`,
      },
 });
-
-app.get("/", (_req, res) => {
-     res.redirect('/index.html');
-})
 
 app.post('/api/sync', async (req, res) => {
 
