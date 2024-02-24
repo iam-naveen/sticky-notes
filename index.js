@@ -1,5 +1,4 @@
 import express from 'express';
-// import path from 'path';
 
 import postgres from 'postgres';
 import dotenv from 'dotenv';
@@ -7,7 +6,6 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-// app.use(express.static('public'));
 
 const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
@@ -23,10 +21,8 @@ const sql = postgres({
      },
 });
 
-// const __dirname = path.resolve();
-//
 app.get("/", (_req, res) => {
-     res.sendFile('/public/index.html');
+     res.redirect('/index.html');
 })
 
 app.post('/api/sync', async (req, res) => {
